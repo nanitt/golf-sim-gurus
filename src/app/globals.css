@@ -2,37 +2,38 @@
 
 /* ─── Design Tokens ─── */
 @theme inline {
-  /* Backgrounds — dark */
-  --color-bg-primary:   #0a0a0a;
-  --color-bg-secondary: #111111;
-  --color-bg-surface:   #1c1c1c;
-  --color-bg-elevated:  #252525;
+  /* Backgrounds — warm light */
+  --color-bg-primary:   #fdfcfa;
+  --color-bg-secondary: #f8f7f5;
+  --color-bg-surface:   #F5F5F1;
+  --color-bg-elevated:  #eeede9;
 
-  /* Legacy aliases kept so existing Tailwind classes still compile */
-  --color-cream:        #0a0a0a;
-  --color-stone:        #111111;
-  --color-stone-dark:   #1c1c1c;
-  --color-champagne:    #1c1c1c;
+  /* Semantic aliases — components reference these as bg-cream, bg-stone, etc. */
+  --color-cream:        #fdfcfa;
+  --color-stone:        #f8f7f5;
+  --color-stone-dark:   #e8e7e3;
+  --color-champagne:    #F5F5F1;
+  --color-carbon:       #fdfcfa;
 
   /* Text */
-  --color-charcoal:       #ffffff;
-  --color-charcoal-light: #a3a3a3;
-  --color-text-muted:     #666666;
+  --color-charcoal:       #32373c;
+  --color-charcoal-light: #4a4f54;
+  --color-text-muted:     #5a5f64;
 
-  /* Accent — electric golf green */
-  --color-celtic:       #22c55e;
-  --color-celtic-dark:  #16a34a;
-  --color-celtic-light: #4ade80;
-  --color-forest:       #15803d;
+  /* Primary accent — dark forest green */
+  --color-celtic:       #1a3d2e;
+  --color-celtic-dark:  #142f24;
+  --color-celtic-light: #2a5c45;
+  --color-forest:       #1B3022;
 
-  /* Removed brass — replaced with green accent */
-  --color-brass:        #22c55e;
-  --color-brass-light:  #4ade80;
-  --color-brass-glow:   rgba(34, 197, 94, 0.1);
+  /* Secondary accent — brass / warm gold */
+  --color-brass:        #c9a959;
+  --color-brass-light:  #d4ba78;
+  --color-brass-glow:   rgba(201, 169, 89, 0.12);
 
-  /* Borders */
-  --color-border:       rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(34, 197, 94, 0.4);
+  /* Borders — charcoal-tinted for light bg */
+  --color-border:       rgba(50, 55, 60, 0.12);
+  --color-border-hover: rgba(26, 61, 46, 0.35);
 
   /* Fonts */
   --font-heading: var(--font-space-grotesk);
@@ -52,27 +53,27 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-charcoal);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.0;
   }
 }
 
 ::selection {
-  background: var(--color-celtic);
-  color: #0a0a0a;
+  background: var(--color-brass);
+  color: #fdfcfa;
 }
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: #333333; }
-::-webkit-scrollbar-thumb:hover { background: #555555; }
+::-webkit-scrollbar-track { background: #f8f7f5; }
+::-webkit-scrollbar-thumb { background: #c9c5bd; }
+::-webkit-scrollbar-thumb:hover { background: #a09b93; }
 
-/* ─── Green Divider ─── */
+/* ─── Brass Divider ─── */
 .brass-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-celtic), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-brass), transparent);
 }
 
 /* ─── Card Lift ─── */
@@ -83,16 +84,16 @@
 }
 .card-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(50, 55, 60, 0.15);
   border-color: var(--color-border-hover);
 }
 
 /* ─── Kicker ─── */
 .kicker {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-celtic);
 }

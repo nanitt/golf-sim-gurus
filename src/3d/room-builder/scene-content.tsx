@@ -22,10 +22,11 @@ interface SceneContentProps {
   d: number;
   h: number;
   isStatic: boolean;
+  monitorName?: string;
 }
 
-export function SceneContent({ progress, w, d, h, isStatic }: SceneContentProps) {
-  const materials = useMaterials(w, d);
+export function SceneContent({ progress, w, d, h, isStatic, monitorName }: SceneContentProps) {
+  const materials = useMaterials(w, d, h);
   const qualityTier = useQualityTier();
 
   // 7-phase opacity bands matching the new camera path
@@ -79,7 +80,6 @@ export function SceneContent({ progress, w, d, h, isStatic }: SceneContentProps)
         d={d}
         h={h}
         materials={materials}
-        qualityTier={qualityTier}
       />
 
       <Callout label="ACOUSTIC PANELS" description="Sound-dampening fabric panels for zero room echo." position={[0, 0.5, 0]}>
@@ -95,7 +95,7 @@ export function SceneContent({ progress, w, d, h, isStatic }: SceneContentProps)
       </Callout>
 
       <Callout label="LAUNCH MONITORS" description="Trackman iO, Trackman 4, GCQuad, & Uneekor EYE XO2." position={[0, 0.3, 0]}>
-        <LaunchMonitor opacity={monitorOpacity} w={w} d={d} h={h} materials={materials} />
+        <LaunchMonitor opacity={monitorOpacity} w={w} d={d} h={h} materials={materials} monitorName={monitorName} />
       </Callout>
 
       <Callout label="HITTING MAT" description="Premium turf with alignment guides and rubber tee." position={[0, 0.2, 0]}>

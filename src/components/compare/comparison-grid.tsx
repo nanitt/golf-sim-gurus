@@ -1,19 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-
-interface Monitor {
-  id: string;
-  name: string;
-  technology: string;
-  accuracy: string;
-  ballSpeed: string;
-  spinRate: string;
-  clubData: boolean;
-  outdoorCapable: boolean;
-  mounting: string;
-  price: string;
-}
+import type { Monitor } from "@/lib/monitors";
 
 interface ComparisonGridProps {
   monitorA: Monitor;
@@ -23,7 +12,7 @@ interface ComparisonGridProps {
 const specs: { key: keyof Monitor; label: string; type: "string" | "boolean" }[] = [
   { key: "technology", label: "Technology", type: "string" },
   { key: "accuracy", label: "Accuracy", type: "string" },
-  { key: "ballSpeed", label: "Ball Speed", type: "string" },
+  { key: "dataPoints", label: "Data Points", type: "string" },
   { key: "spinRate", label: "Spin Rate", type: "string" },
   { key: "clubData", label: "Club Data", type: "boolean" },
   { key: "outdoorCapable", label: "Outdoor Capable", type: "boolean" },
@@ -34,14 +23,30 @@ const specs: { key: keyof Monitor; label: string; type: "string" | "boolean" }[]
 export function ComparisonGrid({ monitorA, monitorB }: ComparisonGridProps) {
   return (
     <div className="overflow-hidden border border-border">
+      {/* Header row with product images + logos */}
       <div className="grid grid-cols-3 bg-stone">
         <div className="p-4" />
-        <div className="border-l border-border p-4 text-center">
-          <h3 className="font-heading text-lg text-charcoal">{monitorA.name}</h3>
-        </div>
-        <div className="border-l border-border p-4 text-center">
-          <h3 className="font-heading text-lg text-charcoal">{monitorB.name}</h3>
-        </div>
+        {[monitorA, monitorB].map((m) => (
+          <div key={m.id} className="border-l border-border p-6 text-center">
+            <div className="relative mx-auto mb-4 h-24 w-full">
+              <Image
+                src={m.productImage}
+                alt={m.name}
+                fill
+                className="object-contain"
+                sizes="200px"
+              />
+            </div>
+            <Image
+              src={m.logo}
+              alt={m.name}
+              width={120}
+              height={24}
+              className="mx-auto h-5 w-auto object-contain brightness-0"
+            />
+            <p className="mt-1 font-mono text-xs text-charcoal">{m.name}</p>
+          </div>
+        ))}
       </div>
 
       {specs.map((spec, i) => {
@@ -69,10 +74,10 @@ export function ComparisonGrid({ monitorA, monitorB }: ComparisonGridProps) {
       <div className="grid grid-cols-3 border-t border-border bg-stone">
         <div className="p-4" />
         <div className="border-l border-border p-4 text-center">
-          <Button size="sm" href="/contact">Quote</Button>
+          <Button size="sm" href="/contact">Get a Quote</Button>
         </div>
         <div className="border-l border-border p-4 text-center">
-          <Button size="sm" href="/contact">Quote</Button>
+          <Button size="sm" href="/contact">Get a Quote</Button>
         </div>
       </div>
     </div>

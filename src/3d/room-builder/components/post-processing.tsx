@@ -37,7 +37,7 @@ function HighEffects({ isStatic, progress }: { isStatic: boolean; progress: numb
     return (
       <EffectComposer multisampling={0}>
         <Bloom intensity={0.4} luminanceThreshold={0.8} mipmapBlur />
-        <SSAO samples={16} radius={0.1} intensity={15} />
+        <SSAO samples={24} radius={0.08} intensity={6} bias={0.02} />
         <Vignette offset={0.1} darkness={0.6} />
         <ChromaticAberration offset={chromaticOffset} radialModulation modulationOffset={0.5} />
         <Noise premultiply blendFunction={BlendFunction.ADD} opacity={0.015} />
@@ -49,7 +49,7 @@ function HighEffects({ isStatic, progress }: { isStatic: boolean; progress: numb
   return (
     <EffectComposer multisampling={0}>
       <Bloom intensity={0.4} luminanceThreshold={0.8} mipmapBlur />
-      <SSAO samples={16} radius={0.1} intensity={15} />
+      <SSAO samples={24} radius={0.08} intensity={6} bias={0.02} />
       <DepthOfField focusDistance={focusDistance} focalLength={0.05} bokehScale={3} />
       <Vignette offset={0.1} darkness={0.6} />
       <ChromaticAberration offset={chromaticOffset} radialModulation modulationOffset={0.5} />
@@ -64,7 +64,7 @@ function MediumEffects() {
   return (
     <EffectComposer multisampling={0}>
       <Bloom intensity={0.4} luminanceThreshold={0.8} mipmapBlur />
-      <SSAO samples={16} radius={0.1} intensity={15} />
+      <SSAO samples={24} radius={0.08} intensity={6} bias={0.02} />
       <Vignette offset={0.1} darkness={0.6} />
       <Noise premultiply blendFunction={BlendFunction.ADD} opacity={0.015} />
       <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />

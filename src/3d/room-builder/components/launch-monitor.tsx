@@ -13,6 +13,7 @@ interface LaunchMonitorProps {
   d: number;
   h: number;
   materials: MaterialConfigs;
+  monitorName?: string;
 }
 
 /** Pulsing LED — oscillates opacity via sin(time * speed + phase) */
@@ -334,22 +335,38 @@ function UneekorEYE({
   );
 }
 
-export function LaunchMonitor({ opacity, w, d, h, materials }: LaunchMonitorProps) {
+export function LaunchMonitor({ opacity, w, d, h, materials, monitorName }: LaunchMonitorProps) {
   const matD = d * 0.35;
   const ballZ = d * 0.08 + matD * 0.25;
+
+  // When a specific monitor is named, show only that unit in its correct position.
+  // Scroll-mode (no monitorName) shows all four as a product showcase.
+  if (monitorName) {
+    if (monitorName === "Trackman iO") {
+      return <TrackmanIO opacity={opacity} h={h} ballZ={ballZ} materials={materials} />;
+    }
+    if (monitorName === "Trackman 4") {
+      return <Trackman4 opacity={opacity} h={h} ballZ={ballZ} materials={materials} />;
+    }
+    if (monitorName === "Foresight GCQuad") {
+      return <GCQuad opacity={opacity} h={h} ballZ={ballZ} materials={materials} />;
+    }
+    if (monitorName === "Uneekor EYE XO2") {
+      return <UneekorEYE opacity={opacity} h={h} ballZ={ballZ} materials={materials} />;
+    }
+  }
+
+  // Scroll-mode fallback — all four visible simultaneously
   const ceilOffset = w * 0.12;
   const sideOffset = w * 0.12;
-
   return (
     <group>
-      {/* Ceiling-mounted units — offset left/right */}
       <group position={[ceilOffset, 0, 0]}>
         <TrackmanIO opacity={opacity} h={h} ballZ={ballZ} materials={materials} />
       </group>
       <group position={[-ceilOffset, 0, 0]}>
         <UneekorEYE opacity={opacity} h={h} ballZ={ballZ} materials={materials} />
       </group>
-      {/* Floor units — behind and beside the ball */}
       <Trackman4 opacity={opacity} h={h} ballZ={ballZ} materials={materials} />
       <group position={[sideOffset, 0, 0]}>
         <GCQuad opacity={opacity} h={h} ballZ={ballZ} materials={materials} />

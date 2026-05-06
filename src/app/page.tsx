@@ -112,7 +112,7 @@ export default async function Home() {
         <GalleryGrid items={gallery} />
         <ProcessTimeline />
         <QuizCta />
-        <EquipmentShowcase items={equipment} />
+        <EquipmentShowcase />
         <Testimonials items={testimonials} />
         <CtaFinal />
       </main>

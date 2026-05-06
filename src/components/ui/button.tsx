@@ -21,10 +21,10 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-celtic text-[#0a0a0a] font-body font-semibold hover:bg-celtic-light active:bg-celtic-dark",
+    "bg-celtic text-cream font-body font-semibold hover:bg-celtic-light active:bg-celtic-dark",
   secondary:
-    "border border-white/20 text-white hover:border-celtic hover:text-celtic",
-  ghost: "text-charcoal-light hover:text-white",
+    "border border-border text-charcoal-light hover:border-celtic hover:text-celtic",
+  ghost: "text-charcoal-light hover:text-charcoal",
 };
 
 const sizes: Record<ButtonSize, string> = {

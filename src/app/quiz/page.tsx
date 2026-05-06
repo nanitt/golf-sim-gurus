@@ -99,7 +99,7 @@ export default function QuizPage() {
                   <div
                     className={`flex h-8 w-8 items-center justify-center rounded-full font-mono text-xs transition-colors ${
                       i <= currentStep
-                        ? "bg-celtic text-white"
+                        ? "bg-celtic text-cream"
                         : "border border-border text-text-muted"
                     }`}
                   >

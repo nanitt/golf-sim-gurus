@@ -15,6 +15,8 @@ export interface RoomBuilderProps {
   depth?: number;  // feet, default 12
   height?: number; // feet, default 8
   mode?: "scroll" | "static";
+  variant?: "inline" | "full";
+  monitor?: string; // recommended monitor name — static mode only shows this unit
 }
 
 const captions = [
@@ -32,6 +34,8 @@ export function RoomBuilder({
   depth = 12,
   height = 8,
   mode = "scroll",
+  variant = "inline",
+  monitor,
 }: RoomBuilderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -71,27 +75,36 @@ export function RoomBuilder({
     return () => trigger.kill();
   }, [prefersReducedMotion, isStatic]);
 
-  // Static mode — compact preview
+  // Static mode
   if (isStatic) {
+    const isFull = variant === "full";
     return (
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-stone">
+      <div
+        className="relative w-full overflow-hidden"
+        style={{
+          aspectRatio: isFull ? "16/9" : "4/3",
+          minHeight: isFull ? "280px" : undefined,
+        }}
+      >
         <Suspense
           fallback={
-            <div className="flex h-full items-center justify-center">
-              <p className="kicker">Loading preview...</p>
+            <div className="flex h-full items-center justify-center bg-celtic-dark">
+              <p className="font-mono text-xs uppercase tracking-widest text-brass/50">Loading room...</p>
             </div>
           }
         >
           <Canvas
-            camera={{ position: [camDist * 0.7, camDist * 0.4, camDist * 0.7], fov: 50 }}
-            dpr={[1, 1.5]}
+            camera={{ position: [camDist * 0.65, camDist * 0.55, camDist * 0.65], fov: 45 }}
+            dpr={[1, 2]}
             performance={{ min: 0.5 }}
+            shadows
+            onCreated={({ gl }) => gl.setClearColor("#142f24", 1)}
           >
-            <SceneContent progress={1} w={w} d={d} h={h} isStatic />
+            <SceneContent progress={1} w={w} d={d} h={h} isStatic monitorName={monitor} />
           </Canvas>
         </Suspense>
-        <div className="absolute bottom-3 left-3 rounded bg-celtic-dark/80 px-3 py-1.5 font-mono text-xs text-white/80">
-          {width}&apos; W &times; {depth}&apos; D &times; {height}&apos; H
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-xs uppercase tracking-[0.2em] text-brass/60">
+          {width}&apos; &times; {depth}&apos; &times; {height}&apos;
         </div>
       </div>
     );

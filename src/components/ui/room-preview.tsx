@@ -6,14 +6,22 @@ import type { RoomDimensions } from "@/types";
 
 interface RoomPreviewProps {
   dimensions: RoomDimensions;
+  variant?: "inline" | "full";
+  monitor?: string;
 }
 
-export function RoomPreview({ dimensions }: RoomPreviewProps) {
+export function RoomPreview({ dimensions, variant = "inline", monitor }: RoomPreviewProps) {
   return (
     <Suspense
       fallback={
-        <div className="flex aspect-[4/3] w-full items-center justify-center bg-stone">
-          <p className="kicker">Loading 3D preview...</p>
+        <div
+          className="flex w-full items-center justify-center bg-celtic-dark"
+          style={{
+            aspectRatio: variant === "full" ? "16/9" : "4/3",
+            minHeight: variant === "full" ? "280px" : undefined,
+          }}
+        >
+          <p className="font-mono text-xs uppercase tracking-widest text-brass/50">Loading room...</p>
         </div>
       }
     >
@@ -22,6 +30,8 @@ export function RoomPreview({ dimensions }: RoomPreviewProps) {
         depth={dimensions.depth}
         height={dimensions.height}
         mode="static"
+        variant={variant}
+        monitor={monitor}
       />
     </Suspense>
   );

@@ -36,37 +36,45 @@ const phases: ProcessPhase[] = [
 
 export function ProcessTimeline() {
   return (
-    <section id="process" className="bg-[#0a0a0a] py-4">
+    <section id="process" className="bg-cream">
       {/* Section label */}
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/30">How We Build</p>
+      <div className="mx-auto max-w-7xl px-6 pb-2 pt-16 md:px-12">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-text-muted">How We Build</p>
       </div>
 
       {/* Phases */}
-      <div className="divide-y divide-white/6 border-t border-white/6">
+      <div className="divide-y divide-border border-t border-border">
         {phases.map((phase, i) => (
-          <ScrollReveal key={phase.number} delay={i * 0.08}>
-            <div className="group mx-auto grid max-w-7xl grid-cols-[auto_1fr] items-start gap-8 px-6 py-10 transition-colors hover:bg-white/2 md:grid-cols-[140px_1fr_200px] md:items-center md:gap-16">
-              {/* Big number */}
-              <span className="font-heading text-6xl font-bold text-celtic/20 transition-colors group-hover:text-celtic/40 md:text-8xl">
+          <ScrollReveal key={phase.number} delay={i * 0.06}>
+            <div className="group relative overflow-hidden">
+              {/* Giant background number — purely decorative */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 select-none font-heading text-[22vw] font-bold italic leading-none text-celtic/[0.04] transition-colors duration-500 group-hover:text-celtic/[0.07] md:right-12"
+              >
                 {phase.number}
               </span>
 
-              {/* Content */}
-              <div>
-                <h3 className="font-heading text-2xl font-bold text-white md:text-3xl">
+              <div className="relative mx-auto max-w-7xl px-6 py-14 md:px-12 md:py-16">
+                {/* Number + rule + duration */}
+                <div className="mb-5 flex items-center gap-4">
+                  <span className="font-mono text-xs text-celtic">{phase.number}</span>
+                  <div className="h-px w-8 bg-brass" />
+                  <span className="font-mono text-xs uppercase tracking-widest text-text-muted">
+                    {phase.duration}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="max-w-lg font-heading text-5xl text-charcoal md:text-6xl">
                   {phase.title}{" "}
-                  <span className="font-normal text-white/40">{phase.subtitle}</span>
+                  <span className="text-text-muted">{phase.subtitle}</span>
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/50">
+
+                {/* Description */}
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-charcoal-light">
                   {phase.description}
                 </p>
-              </div>
-
-              {/* Duration */}
-              <div className="hidden text-right md:block">
-                <p className="font-mono text-xs uppercase tracking-widest text-white/30">Timeline</p>
-                <p className="mt-1 font-mono text-sm text-celtic">{phase.duration}</p>
               </div>
             </div>
           </ScrollReveal>

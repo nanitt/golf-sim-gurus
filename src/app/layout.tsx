@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Bebas_Neue, Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const bebasNeue = Bebas_Neue({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const montserrat = Montserrat({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${plusJakartaSans.variable} ${dmSans.variable} ${ibmPlexMono.variable} antialiased`}
+        className={`${bebasNeue.variable} ${montserrat.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
       </body>

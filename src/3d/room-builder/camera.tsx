@@ -68,7 +68,7 @@ export function StaticCamera() {
   return (
     <OrbitControls
       autoRotate
-      autoRotateSpeed={0.5}
+      autoRotateSpeed={0.3}
       enableZoom={false}
       enablePan={false}
       minPolarAngle={Math.PI / 4}

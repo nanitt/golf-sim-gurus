@@ -1,8 +1,6 @@
 "use client";
 
-import { MeshReflectorMaterial } from "@react-three/drei";
 import { type MaterialConfigs } from "../materials/use-materials";
-import { type QualityTier } from "../hooks/use-quality-tier";
 
 interface RoomShellProps {
   opacity: number;
@@ -10,39 +8,17 @@ interface RoomShellProps {
   d: number;
   h: number;
   materials: MaterialConfigs;
-  qualityTier: QualityTier;
 }
 
-export function RoomShell({ opacity, w, d, h, materials, qualityTier }: RoomShellProps) {
+export function RoomShell({ opacity, w, d, h, materials }: RoomShellProps) {
   const halfH = h / 2;
-  // Only activate reflector once floor is fully opaque — animated transparency
-  // causes flickering because the reflection FBO re-renders every frame
-  const useReflector = qualityTier !== "LOW" && opacity >= 0.98;
-  const reflectorRes = qualityTier === "HIGH" ? 512 : 256;
 
   return (
     <group>
-      {/* Floor */}
+      {/* Floor — HDRI environment map on clearcoat gives subtle reflection without FBO */}
       <mesh position={[0, -halfH, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[w, d]} />
-        {useReflector ? (
-          <MeshReflectorMaterial
-            blur={[300, 100]}
-            resolution={reflectorRes}
-            mixBlur={1}
-            mixStrength={0.4}
-            roughness={0.6}
-            depthScale={0}
-            color={materials.hardwood.color}
-            map={materials.hardwood.map}
-            normalMap={materials.hardwood.normalMap}
-            normalScale={materials.hardwood.normalScale}
-            metalness={0}
-            mirror={0}
-          />
-        ) : (
-          <meshPhysicalMaterial {...materials.hardwood} transparent opacity={opacity} />
-        )}
+        <meshPhysicalMaterial {...materials.hardwood} transparent opacity={opacity} envMapIntensity={0.4} />
       </mesh>
 
       {/* Back wall */}

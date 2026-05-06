@@ -6,63 +6,10 @@ import { Footer } from "@/components/layout/footer";
 import { MonitorCard } from "@/components/compare/monitor-card";
 import { ComparisonGrid } from "@/components/compare/comparison-grid";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-
-const monitors = [
-  {
-    id: "trackman",
-    name: "Trackman iO",
-    technology: "Dual Radar",
-    accuracy: "\u00b10.2\u00b0",
-    ballSpeed: "400 mph",
-    spinRate: "Yes — full spin axis",
-    clubData: true,
-    outdoorCapable: true,
-    mounting: "Floor/Tripod",
-    price: "From $25,000",
-    image: null,
-    description:
-      "The undisputed standard in professional golf. Used on every major tour worldwide, the Trackman iO combines dual radar technology with optical imaging for the most comprehensive and accurate ball and club data available.",
-    recommendation:
-      "Best for: Serious golfers who demand the same technology used by tour professionals. Ideal for large, dedicated rooms where its radar range can perform at full capability.",
-  },
-  {
-    id: "foresight",
-    name: "Foresight GCQuad",
-    technology: "Quadrascopic Camera",
-    accuracy: "\u00b10.5\u00b0",
-    ballSpeed: "350 mph",
-    spinRate: "Yes — full spin axis",
-    clubData: true,
-    outdoorCapable: true,
-    mounting: "Floor/Tripod",
-    price: "From $16,000",
-    image: null,
-    description:
-      "Four high-speed cameras capture every detail of impact with photographic precision. The GCQuad's compact form factor and camera-based technology make it versatile for both indoor and outdoor use.",
-    recommendation:
-      "Best for: Golfers who want near-Trackman accuracy in a more versatile, portable package. Excellent for rooms of all sizes.",
-  },
-  {
-    id: "uneekor",
-    name: "Uneekor EYE XO2",
-    technology: "Overhead Mounted",
-    accuracy: "\u00b11.0\u00b0",
-    ballSpeed: "300 mph",
-    spinRate: "Yes — full spin axis",
-    clubData: true,
-    outdoorCapable: false,
-    mounting: "Ceiling",
-    price: "From $8,000",
-    image: null,
-    description:
-      "Mounted overhead, the EYE XO2 uses high-speed cameras to track both ball and club data without taking up any floor space. Its fixed position means zero setup time — just step up and swing.",
-    recommendation:
-      "Best for: Dedicated simulator rooms where ceiling mounting is possible. Great value for money with reliable accuracy.",
-  },
-];
+import { monitors } from "@/lib/monitors";
 
 export default function ComparePage() {
-  const [selected, setSelected] = useState("trackman");
+  const [selected, setSelected] = useState(monitors[0].id);
   const [compareMode, setCompareMode] = useState(false);
   const [compareIds, setCompareIds] = useState<string[]>([]);
 
@@ -89,7 +36,7 @@ export default function ComparePage() {
             </h1>
             <p className="mb-12 max-w-2xl text-lg text-text-muted">
               Every Golf Sim Gurus build starts with the right launch monitor.
-              Compare the three we trust and install.
+              Compare the four we trust and install.
             </p>
           </ScrollReveal>
 
@@ -123,7 +70,7 @@ export default function ComparePage() {
                     onClick={() => setSelected(m.id)}
                     className={`px-5 py-2.5 text-sm font-semibold transition-all ${
                       selected === m.id
-                        ? "bg-celtic text-white"
+                        ? "bg-celtic text-cream"
                         : "border border-border text-charcoal-light hover:border-celtic/30"
                     }`}
                   >
@@ -142,7 +89,7 @@ export default function ComparePage() {
                     onClick={() => toggleCompare(m.id)}
                     className={`px-5 py-2.5 text-sm font-semibold transition-all ${
                       compareIds.includes(m.id)
-                        ? "bg-celtic text-white"
+                        ? "bg-celtic text-cream"
                         : "border border-border text-charcoal-light hover:border-celtic/30"
                     }`}
                   >

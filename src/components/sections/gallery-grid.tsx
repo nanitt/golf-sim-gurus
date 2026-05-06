@@ -12,12 +12,12 @@ interface GalleryItemData {
 }
 
 const defaultGalleryItems: GalleryItemData[] = [
-  { id: "1", title: "Modern Basement Retreat",       dimensions: "18′ × 25′ × 10′", monitor: "Trackman iO",       image: "/images/gallery/build-29.jpg" },
-  { id: "2", title: "Garage Conversion",             dimensions: "16′ × 22′ × 9′",  monitor: "Foresight GCQuad", image: "/images/gallery/build-24.jpg" },
-  { id: "3", title: "Dedicated Wing Build",          dimensions: "20′ × 30′ × 11′", monitor: "Trackman iO",       image: "/images/gallery/sim-room-2.jpg" },
-  { id: "4", title: "Urban Condo Studio",            dimensions: "14′ × 20′ × 9′",  monitor: "Uneekor EYE XO2",  image: "/images/gallery/commercial-sim.jpg" },
-  { id: "5", title: "Lakehouse Entertainment Room",  dimensions: "22′ × 28′ × 10′", monitor: "Foresight GCQuad", image: "/images/gallery/celtic-course-5.jpg" },
-  { id: "6", title: "Executive Home Office",         dimensions: "15′ × 24′ × 9.5′",monitor: "Trackman iO",       image: "/images/gallery/build-room.jpg" },
+  { id: "1", title: "Commercial Entertainment Venue", dimensions: "28′ × 40′ × 12′", monitor: "Trackman iO",       image: "/images/hero/golf-hero-bg.jpg" },
+  { id: "2", title: "Cathedral Ceiling Home Build",   dimensions: "18′ × 24′ × 14′", monitor: "Foresight GCQuad", image: "/images/gallery/commercial-sim.jpg" },
+  { id: "3", title: "Multi-Bay Golf Lounge",          dimensions: "35′ × 50′ × 11′", monitor: "Trackman iO",       image: "/images/hero/celtic-cover.jpg" },
+  { id: "4", title: "Basement Retreat",               dimensions: "16′ × 22′ × 9′",  monitor: "Foresight GCQuad", image: "/images/gallery/build-room.jpg" },
+  { id: "5", title: "Dedicated Studio Build",         dimensions: "14′ × 20′ × 10′", monitor: "Uneekor EYE XO2",  image: "/images/gallery/build-24.jpg" },
+  { id: "6", title: "Bar & Simulator Lounge",         dimensions: "20′ × 30′ × 10′", monitor: "Trackman iO",       image: "/images/gallery/celtic-course-5.jpg" },
 ];
 
 interface GalleryGridProps {
@@ -28,10 +28,10 @@ export function GalleryGrid({ items }: GalleryGridProps) {
   const g = items && items.length > 0 ? items : defaultGalleryItems;
 
   return (
-    <section id="gallery" className="bg-[#0a0a0a]">
+    <section id="gallery" className="bg-cream">
       {/* Label row */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8">
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/30">Our Work</p>
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-text-muted">Our Work</p>
         <Link href="/gallery" className="font-mono text-xs uppercase tracking-widest text-celtic transition-opacity hover:opacity-70">
           View All →
         </Link>

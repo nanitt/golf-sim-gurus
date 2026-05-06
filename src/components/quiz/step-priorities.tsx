@@ -59,7 +59,7 @@ export function StepPriorities({ onNext, onBack }: StepPrioritiesProps) {
               onClick={() => toggle(p.value)}
               className={`rounded-full border px-5 py-2.5 text-sm transition-all ${
                 isSelected
-                  ? "border-celtic bg-celtic text-white font-semibold"
+                  ? "border-celtic bg-celtic text-cream font-semibold"
                   : "border-border text-text-muted hover:border-celtic/30 hover:text-charcoal"
               }`}
             >

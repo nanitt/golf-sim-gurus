@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 interface TestimonialData {
@@ -45,60 +44,58 @@ export function Testimonials({ items }: TestimonialsProps) {
   const rest = testimonials.slice(1);
 
   return (
-    <section className="bg-[#0a0a0a]">
-      {/* Featured testimonial */}
+    <section className="bg-cream">
+      {/* Featured testimonial — editorial pull quote */}
       <ScrollReveal>
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-0 border-b border-white/6 md:grid-cols-2">
-          {/* Image */}
-          <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[480px]">
-            <Image
-              src={featured.image}
-              alt={featured.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0a0a0a]/60 md:to-[#0a0a0a]/80" />
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-12 md:py-28">
+          <p className="mb-10 font-mono text-xs uppercase tracking-[0.25em] text-text-muted">
+            Client Stories
+          </p>
+
+          {/* Big opening mark */}
+          <div
+            aria-hidden="true"
+            className="mb-2 font-heading text-[7rem] leading-none text-brass/25 select-none"
+          >
+            &ldquo;
           </div>
 
-          {/* Quote */}
-          <div className="flex flex-col justify-center border-l border-white/6 px-10 py-16 md:px-16">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-white/30">Client Stories</p>
-            <blockquote className="mt-8 font-heading text-2xl font-bold leading-snug text-white md:text-3xl">
-              &ldquo;{featured.quote}&rdquo;
-            </blockquote>
-            <div className="mt-8 flex items-center gap-3">
-              <div className="h-px flex-1 bg-white/10" />
-              <div>
-                <p className="text-sm font-semibold text-white">{featured.name}</p>
-                <p className="text-xs text-white/40">{featured.location}</p>
-              </div>
-            </div>
+          <blockquote className="max-w-4xl font-heading text-4xl leading-snug text-charcoal md:text-5xl">
+            {featured.quote}
+          </blockquote>
+
+          <div className="mt-10 flex items-center gap-4">
+            <div className="h-px w-10 bg-brass" />
+            <span className="font-mono text-sm font-medium text-charcoal">{featured.name}</span>
+            <span className="text-text-muted">·</span>
+            <span className="font-mono text-sm text-text-muted">{featured.location}</span>
           </div>
         </div>
       </ScrollReveal>
 
-      {/* Secondary testimonials */}
+      {/* Secondary testimonials — side by side, smaller */}
       {rest.length > 0 && (
-        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-x divide-white/6 md:grid-cols-2">
-          {rest.map((t, i) => (
-            <ScrollReveal key={t.id} delay={i * 0.1}>
-              <div className="border-b border-white/6 px-10 py-10 md:px-12">
-                <blockquote className="text-base leading-relaxed text-white/60">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <div className="mt-6 flex items-center gap-2.5">
-                  <div className="flex h-7 w-7 items-center justify-center bg-celtic text-xs font-bold text-[#0a0a0a]">
-                    {t.name[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-xs text-white/30">{t.location}</p>
+        <div className="border-t border-border">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-border md:grid-cols-2 md:divide-x md:divide-y-0">
+            {rest.map((t, i) => (
+              <ScrollReveal key={t.id} delay={i * 0.1}>
+                <div className="px-6 py-10 md:px-12">
+                  <blockquote className="text-base leading-relaxed text-charcoal-light">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="flex h-7 w-7 items-center justify-center bg-celtic text-xs font-semibold text-cream">
+                      {t.name[0]}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-charcoal">{t.name}</p>
+                      <p className="text-xs text-text-muted">{t.location}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       )}
     </section>

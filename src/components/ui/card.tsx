@@ -9,7 +9,7 @@ export function Card({ className, lift = true, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        "border border-white/8 bg-[#1c1c1c] p-6",
+        "border border-border bg-bg-surface p-6",
         lift && "card-lift",
         className
       )}

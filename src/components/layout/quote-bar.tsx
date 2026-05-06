@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -25,13 +26,17 @@ export function QuoteBar() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -48, opacity: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed top-0 z-40 w-full border-b border-white/8 bg-[#0a0a0a]/95 backdrop-blur-sm"
+          className="fixed top-0 z-40 w-full border-b border-border bg-cream/95 backdrop-blur-sm"
         >
           <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-6">
-            <span className="font-heading text-sm font-bold text-white">
-              Golf Sim <span className="text-celtic">Gurus</span>
-            </span>
-            <span className="hidden font-mono text-xs text-white/30 sm:block">
+            <Image
+              src="/images/logos/golfsimgurus.png"
+              alt="Golf Sim Gurus"
+              width={314}
+              height={120}
+              className="h-8 w-auto"
+            />
+            <span className="hidden font-mono text-xs text-text-muted sm:block">
               Custom builds · Kemptville, Ottawa &amp; Eastern Ontario
             </span>
             <Button size="sm" href="/contact">
